@@ -22,6 +22,8 @@ public class FormaLogin extends javax.swing.JFrame {
      */
     public FormaLogin() {
         initComponents();
+        this.setTitle("Login");
+        this.setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
@@ -49,9 +51,9 @@ public class FormaLogin extends javax.swing.JFrame {
 
         jTextFieldUsername.setText("nikola123");
 
-        jPasswordField1.setText("123");
+        jPasswordField1.setText("nikola123");
 
-        jButtonUlogujSe.setText("Uloguj se");
+        jButtonUlogujSe.setText("Prijavi se");
         jButtonUlogujSe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUlogujSeActionPerformed(evt);

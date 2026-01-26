@@ -9,6 +9,8 @@ import java.io.IOException;
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
@@ -25,10 +27,14 @@ public class GlavnaForma extends javax.swing.JFrame {
     public GlavnaForma() {
 
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
         Zaposleni ulogovani = cordinator.Cordinator.getInstance().getUlogovani();
         setTitle("Ulogovani korisnik " + ulogovani.getIme() + " " + ulogovani.getPrezime());
-        jMenuOdjava.add(Box.createHorizontalGlue());
-        jMenuOdjava.add(jMenuItemOdjaviSe);
+        
+        
+        jMenuBar1.add(Box.createHorizontalGlue());
+        jMenuBar1.add(jMenuOdjava);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
@@ -47,6 +53,16 @@ public class GlavnaForma extends javax.swing.JFrame {
     public void setjMenuItemOdjaviSe(JMenuItem jMenuItemOdjaviSe) {
         this.jMenuItemOdjaviSe = jMenuItemOdjaviSe;
     }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public void setjMenuBar1(JMenuBar jMenuBar1) {
+        this.jMenuBar1 = jMenuBar1;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,7 +206,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenu2.setText("Skijaska oprema");
 
-        jMenuItemDodajSkijaskuOpremu.setText("Dodaj skijasku opremu");
+        jMenuItemDodajSkijaskuOpremu.setText("Ubaci skijasku opremu");
         jMenuItemDodajSkijaskuOpremu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemDodajSkijaskuOpremuActionPerformed(evt);
@@ -198,7 +214,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemDodajSkijaskuOpremu);
 
-        jMenuItemPregledSkijaskeOpreme.setText("Pregled skijaske opreme");
+        jMenuItemPregledSkijaskeOpreme.setText("Pretrazi skijasku opremu");
         jMenuItemPregledSkijaskeOpreme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemPregledSkijaskeOpremeActionPerformed(evt);
@@ -210,7 +226,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenu3.setText("Termin dezurstva");
 
-        jMenuItemKreirajTermin.setText("Kreiraj termin");
+        jMenuItemKreirajTermin.setText("Ubaci termin dezurstva");
         jMenuItemKreirajTermin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemKreirajTerminActionPerformed(evt);
@@ -218,7 +234,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemKreirajTermin);
 
-        jMenuItemPregledTermin.setText("Pregled termina");
+        jMenuItemPregledTermin.setText("Pretrazi termin dezurstva");
         jMenuItemPregledTermin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemPregledTerminActionPerformed(evt);
@@ -260,7 +276,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelZdravo)
                     .addComponent(jLabelNaziv))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
         pack();
@@ -279,7 +295,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemPregledIznajmljivanjaActionPerformed
 
     private void jMenuItemKreirajMestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemKreirajMestoActionPerformed
-        
+        cordinator.Cordinator.getInstance().otvoriKreirajMesto();
     }//GEN-LAST:event_jMenuItemKreirajMestoActionPerformed
 
     private void jMenuItemPregledMestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPregledMestaActionPerformed

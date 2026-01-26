@@ -6,44 +6,42 @@ package cordinator;
 
 import domen.StavkaIznajmljivanja;
 import domen.Zaposleni;
-import forme.FormaDodajIznajmljivanje;
-import forme.FormaDodajMesto;
-import forme.FormaDodajOsobu;
-import forme.FormaDodajSkijaskuOpremu;
-import forme.FormaDodajTerminDezurstva;
-import forme.FormaDodajTerminZaposlenog;
-import forme.FormaDodajZaposlenog;
+import forme.dodaj.FormaDodajIznajmljivanje;
+import forme.dodaj.FormaDodajMesto;
+import forme.dodaj.FormaDodajOsobu;
+import forme.dodaj.FormaDodajSkijaskuOpremu;
+import forme.dodaj.FormaDodajTerminDezurstva;
+import forme.dodaj.FormaDodajTerminZaposlenog;
+import forme.dodaj.FormaDodajZaposlenog;
 import forme.FormaLogin;
 import forme.FormaMod;
-import forme.FormaPrikazMesta;
-import forme.FormaPrikazOsoba;
-import forme.FormaPrikazSkijaskeOpreme;
-import forme.FormaPrikazStavkiIznajmljivanja;
-import forme.FormaPrikazTerminaDezurstva;
-import forme.FormaPrikazTerminaZaposlenog;
-import forme.FormaPrikazZaposlenih;
-import forme.FormaPrikaziIznajmljivanje;
+import forme.prikaz.FormaPrikazMesta;
+import forme.prikaz.FormaPrikazOsoba;
+import forme.prikaz.FormaPrikazSkijaskeOpreme;
+import forme.prikaz.FormaPrikazTerminaDezurstva;
+import forme.prikaz.FormaPrikazTerminaZaposlenog;
+import forme.prikaz.FormaPrikazZaposlenih;
+import forme.prikaz.FormaPrikaziIznajmljivanje;
 import forme.GlavnaForma;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import kontroleri.DodajIznajmljivanjeController;
-import kontroleri.DodajMestoController;
-import kontroleri.DodajOsobuController;
-import kontroleri.DodajSkijaskuOpremuController;
-import kontroleri.DodajTerminDezurstvaController;
-import kontroleri.DodajTerminZaposlenogController;
-import kontroleri.DodajZaposlenogController;
+import kontroleri.iznajmljivanje.DodajIznajmljivanjeController;
+import kontroleri.mesto.DodajMestoController;
+import kontroleri.osoba.DodajOsobuController;
+import kontroleri.skijaskaoprema.DodajSkijaskuOpremuController;
+import kontroleri.termindezurstva.DodajTerminDezurstvaController;
+import kontroleri.terminzaposlenog.DodajTerminZaposlenogController;
+import kontroleri.zaposleni.DodajZaposlenogController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
-import kontroleri.PrikazIznajmljivanjaController;
-import kontroleri.PrikazMestaController;
-import kontroleri.PrikazOsobaController;
-import kontroleri.PrikazSkijaskeOpremeController;
-import kontroleri.PrikazStavkiIznajmljivanjaController;
-import kontroleri.PrikazTerminaDezurstvaController;
-import kontroleri.PrikazTerminaZaposlenogController;
-import kontroleri.PrikazZaposlenihController;
+import kontroleri.iznajmljivanje.PrikazIznajmljivanjaController;
+import kontroleri.mesto.PrikazMestaController;
+import kontroleri.osoba.PrikazOsobaController;
+import kontroleri.skijaskaoprema.PrikazSkijaskeOpremeController;
+import kontroleri.termindezurstva.PrikazTerminaDezurstvaController;
+import kontroleri.terminzaposlenog.PrikazTerminaZaposlenogController;
+import kontroleri.zaposleni.PrikazZaposlenihController;
 
 /**
  *
@@ -69,7 +67,6 @@ public class Cordinator {
     private DodajTerminZaposlenogController dodajTerminZaposlenogController;
     private PrikazTerminaZaposlenogController prikazTerminaZaposlenogController;
     private DodajIznajmljivanjeController dodajIznajmljivanjeController;
-    private PrikazStavkiIznajmljivanjaController prikazStavkiIznajmljivanjaController;
     
     private Cordinator() {
         parametri = new HashMap<>();
@@ -82,8 +79,6 @@ public class Cordinator {
     public void setUlogovani(Zaposleni ulogovani) {
         this.ulogovani = ulogovani;
     }
-    
-    
     
     public static Cordinator getInstance(){
         if(instance==null){
@@ -225,18 +220,23 @@ public class Cordinator {
         dodajIznajmljivanjeController.otvoriFormu(FormaMod.DODAJ);
     }
 
-    public void otvoriPrikazStavkiIznajmljivanja(List<StavkaIznajmljivanja> lista) {
-        prikazStavkiIznajmljivanjaController = new PrikazStavkiIznajmljivanjaController(new FormaPrikazStavkiIznajmljivanja());
-        prikazStavkiIznajmljivanjaController.otvoriFormu(lista);
-    }
 
     public void azurirajVrednosti() {
         dodajIznajmljivanjeController.osveziFormu();
     }
 
-    public void azurirajStavku(StavkaIznajmljivanja so) {
-        dodajIznajmljivanjeController.azurirajStavkuIznajmljivanja(so);
+    public void osveziFormuIznajmljivanje() {
+        prikazIznajmljivanjaController.osveziFormu();
     }
+
+    public void otvoriFormuIzmeniIznajmljivanje() {
+        dodajIznajmljivanjeController = new DodajIznajmljivanjeController(new FormaDodajIznajmljivanje());
+        dodajIznajmljivanjeController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+
+
+    
 
    
     

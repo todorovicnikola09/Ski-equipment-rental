@@ -4,6 +4,7 @@
  */
 package komunikacija;
 
+import cordinator.Cordinator;
 import domen.Iznajmljivanje;
 import domen.Mesto;
 import domen.Osoba;
@@ -18,6 +19,7 @@ import java.net.Socket;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -54,7 +56,6 @@ public class Komunikacija {
                 System.out.println("Konekcija sa serverom zatvorena.");
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -85,7 +86,7 @@ public class Komunikacija {
             System.out.println("Server nije povezan.");
         }
     }
-    
+
     public Zaposleni login(String ki, String loz) {
         if (!serverKonekcija) {
             return null;
@@ -113,17 +114,12 @@ public class Komunikacija {
         return osobe;
     }
 
-    public void obrisiOsobu(Osoba o) throws Exception {
+    public String obrisiOsobu(Osoba o) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_OSOBU, o);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        Cordinator.getInstance().osveziFormu();
+        return (String) odg.getOdgovor();
     }
 
     public List<Mesto> ucitajMesta() {
@@ -143,8 +139,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -157,8 +151,6 @@ public class Komunikacija {
             cordinator.Cordinator.getInstance().osveziFormu();
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -180,8 +172,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -194,22 +184,14 @@ public class Komunikacija {
             cordinator.Cordinator.getInstance().osveziFormuMesta();
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
-    public void obrisiMesto(Mesto m) throws Exception {
+    public String obrisiMesto(Mesto m) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_MESTO, m);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        return (String) odg.getOdgovor();
     }
 
     public void dodajSkijaskuOpremu(SkijaskaOprema so) throws Exception {
@@ -220,8 +202,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -235,17 +215,11 @@ public class Komunikacija {
         return skijaskaOprema;
     }
 
-    public void obrisiSkijaskuOpremu(SkijaskaOprema so) throws Exception {
+    public String obrisiSkijaskuOpremu(SkijaskaOprema so) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_SKIJASKU_OPREMU, so);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        return (String) odg.getOdgovor();
     }
 
     public void azurirajSkijaskuOpremu(SkijaskaOprema so) throws Exception {
@@ -256,9 +230,7 @@ public class Komunikacija {
             System.out.println("Uspeh");
             cordinator.Cordinator.getInstance().osveziFormuSkijaskaOprema();
         } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
+            System.out.println("Greska");;
         }
     }
 
@@ -280,8 +252,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -297,17 +267,11 @@ public class Komunikacija {
         return false;
     }
 
-    public void obrisiTerminDezurstva(TerminDezurstva td) throws Exception {
+    public String obrisiTerminDezurstva(TerminDezurstva td) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_TERMIN_DEZURSTVA, td);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        return (String) odg.getOdgovor();
     }
 
     public void dodajZaposlenog(Zaposleni z) throws Exception {
@@ -318,8 +282,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -342,35 +304,22 @@ public class Komunikacija {
             cordinator.Cordinator.getInstance().osveziFormuZaposleni();
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
-    public void obrisiZaposlenog(Zaposleni z) throws Exception {
+    public String obrisiZaposlenog(Zaposleni z) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_ZAPOSLENOG, z);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        Cordinator.getInstance().osveziFormuZaposleni();
+        return (String) odg.getOdgovor();
     }
 
-    public void dodajTerminZaposlenog(ZapTermin zt) throws Exception {
+    public String dodajTerminZaposlenog(ZapTermin zt) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_TERMIN_ZAPOSLENOG, zt);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            System.out.println("Uspeh");
-        } else {
-            System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
-        }
+        return (String) odg.getOdgovor();
     }
 
     public List<ZapTermin> ucitajTermineZaposlenih() {
@@ -391,13 +340,12 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
-    public void azurirajTerminZaposlenog(ZapTermin zt,ZapTermin podaci) throws Exception {
-        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TERMIN_ZAPOSLENOG, zt, podaci);
+    public void azurirajTerminZaposlenog(ZapTermin zt, String uslov) throws Exception {
+        Object[] parametri = new Object[]{zt,uslov};
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TERMIN_ZAPOSLENOG, parametri);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         if (odg.getOdgovor() == null) {
@@ -405,8 +353,6 @@ public class Komunikacija {
             cordinator.Cordinator.getInstance().osveziFormuTerminZaposlenog();
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -418,8 +364,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -431,8 +375,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -444,8 +386,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -467,8 +407,6 @@ public class Komunikacija {
             System.out.println("Uspeh");
         } else {
             System.out.println("Greska");
-            ((Exception) odg.getOdgovor()).printStackTrace();
-            throw new Exception("Greska");
         }
     }
 
@@ -481,14 +419,15 @@ public class Komunikacija {
         return id;
     }
 
-    
-
-    
-
-   
-
-    
-
-   
+    public void azurirajIznajmljivanje(Iznajmljivanje selektovanoIznajmljivanje) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_IZNAJMLJIVANJE, selektovanoIznajmljivanje);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspeh");
+        } else {
+            System.out.println("Greska");
+        }
+    }
 
 }

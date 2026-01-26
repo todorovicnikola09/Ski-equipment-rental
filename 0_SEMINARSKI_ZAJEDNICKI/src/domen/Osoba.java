@@ -8,18 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.sql.*;
+
 /**
  *
  * @author Nikola
  */
-public class Osoba implements ApstraktniDomenskiObjekat{
+public class Osoba implements ApstraktniDomenskiObjekat {
+
     private int idOsoba;
     private String ime;
     private String prezime;
     private String telefon;
     private String email;
     private Mesto idMesto;
-    
+
     public Osoba() {
     }
 
@@ -31,7 +33,7 @@ public class Osoba implements ApstraktniDomenskiObjekat{
         this.email = email;
         this.idMesto = idMesto;
     }
-    
+
     public int getIdOsoba() {
         return idOsoba;
     }
@@ -80,18 +82,9 @@ public class Osoba implements ApstraktniDomenskiObjekat{
         this.idMesto = idMesto;
     }
 
-    
-
-
     @Override
     public String toString() {
         return ime + " " + prezime;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
     }
 
     @Override
@@ -106,9 +99,12 @@ public class Osoba implements ApstraktniDomenskiObjekat{
             return false;
         }
         final Osoba other = (Osoba) obj;
-        if (this.idOsoba != other.idOsoba) {
-            return false;
+        
+        if (this.idOsoba == other.idOsoba) {
+            return true;
         }
+
+        // Originalna logika
         if (!Objects.equals(this.ime, other.ime)) {
             return false;
         }
@@ -152,9 +148,9 @@ public class Osoba implements ApstraktniDomenskiObjekat{
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
-        
-        while(rs.next()){
-            
+
+        while (rs.next()) {
+
             int IdOsoba = rs.getInt("osoba.idOsoba");
             String Ime = rs.getString("osoba.ime");
             String Prezime = rs.getString("osoba.prezime");
@@ -166,7 +162,7 @@ public class Osoba implements ApstraktniDomenskiObjekat{
             Osoba o = new Osoba(IdOsoba, Ime, Prezime, Telefon, Email, m);
             lista.add(o);
         }
-        
+
         return lista;
     }
 
@@ -174,7 +170,5 @@ public class Osoba implements ApstraktniDomenskiObjekat{
     public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    
 
 }

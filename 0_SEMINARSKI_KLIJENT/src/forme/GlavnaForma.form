@@ -126,7 +126,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemDodajSkijaskuOpremu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Dodaj skijasku opremu"/>
+                <Property name="text" type="java.lang.String" value="Ubaci skijasku opremu"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemDodajSkijaskuOpremuActionPerformed"/>
@@ -134,7 +134,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPregledSkijaskeOpreme">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pregled skijaske opreme"/>
+                <Property name="text" type="java.lang.String" value="Pretrazi skijasku opremu"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemPregledSkijaskeOpremeActionPerformed"/>
@@ -149,7 +149,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemKreirajTermin">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Kreiraj termin"/>
+                <Property name="text" type="java.lang.String" value="Ubaci termin dezurstva"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemKreirajTerminActionPerformed"/>
@@ -157,7 +157,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPregledTermin">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pregled termina"/>
+                <Property name="text" type="java.lang.String" value="Pretrazi termin dezurstva"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemPregledTerminActionPerformed"/>
@@ -223,7 +223,7 @@
                   <Component id="jLabelZdravo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelNaziv" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="322" max="32767" attributes="0"/>
+              <EmptySpace pref="323" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

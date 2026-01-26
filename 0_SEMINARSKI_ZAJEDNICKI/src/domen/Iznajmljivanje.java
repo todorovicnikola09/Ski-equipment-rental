@@ -7,7 +7,6 @@ package domen;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +28,8 @@ public class Iznajmljivanje implements ApstraktniDomenskiObjekat {
     public Iznajmljivanje() {
     }
     
-    public Iznajmljivanje(int idIznajmljivanje, LocalDate datumIznajmljivanja, int ukupnoSati, double ukupanIznos, String nacinPlacanja, Zaposleni idZaposleni, Osoba idOsoba) {
+    public Iznajmljivanje(int idIznajmljivanje, LocalDate datumIznajmljivanja, int ukupnoSati, 
+            double ukupanIznos, String nacinPlacanja, Zaposleni idZaposleni, Osoba idOsoba) {
         this.idIznajmljivanje = idIznajmljivanje;
         this.datumIznajmljivanja = datumIznajmljivanja;
         this.ukupnoSati = ukupnoSati;
@@ -58,7 +58,16 @@ public class Iznajmljivanje implements ApstraktniDomenskiObjekat {
         this.lista = lista;
     }
     
-    
+    public Iznajmljivanje(int idIznajmljivanje, LocalDate datumIznajmljivanja, int ukupnoSati, double ukupanIznos, Zaposleni idZaposleni, Osoba idOsoba, String nacinPlacanja, List<StavkaIznajmljivanja> lista) {
+        this.idIznajmljivanje = idIznajmljivanje;
+        this.datumIznajmljivanja = datumIznajmljivanja;
+        this.ukupnoSati = ukupnoSati;
+        this.ukupanIznos = ukupanIznos;
+        this.idZaposleni = idZaposleni;
+        this.idOsoba = idOsoba;
+        this.nacinPlacanja = nacinPlacanja;
+        this.lista = lista;
+    }
 
     public int getIdIznajmljivanje() {
         return idIznajmljivanje;
@@ -191,7 +200,7 @@ public class Iznajmljivanje implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumIznajmljivanje='" + datumIznajmljivanja + "', ukupnoSati=" + ukupnoSati + ", ukupanIznos=" + ukupanIznos + ", nacinPlacanja='" + nacinPlacanja + "'";
+        return "datumIznajmljivanja='" + datumIznajmljivanja + "', ukupnoSati=" + ukupnoSati + ", ukupanIznos=" + ukupanIznos + ", nacinPlacanja='" + nacinPlacanja + "', idZaposleni=" + idZaposleni.getIdZaposleni() + ", idOsoba=" + idOsoba.getIdOsoba();
     }
 
     @Override

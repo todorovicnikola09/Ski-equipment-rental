@@ -7,8 +7,6 @@ package komunikacija;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +28,7 @@ public class Posiljalac {
             out.writeObject(obj);
             out.flush();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            
         }
     }
 }

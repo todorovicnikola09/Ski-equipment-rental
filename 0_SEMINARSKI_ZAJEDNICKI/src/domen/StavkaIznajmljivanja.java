@@ -7,7 +7,6 @@ package domen;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +27,8 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
     public StavkaIznajmljivanja() {
     }
 
-    public StavkaIznajmljivanja(int rb, Iznajmljivanje idIznajmljivanje, int brojSati, double cena, double satCena, LocalDate datumPovratkaOpreme, SkijaskaOprema idSkiOprema) {
+    public StavkaIznajmljivanja(int rb, Iznajmljivanje idIznajmljivanje, int brojSati, double cena, 
+            double satCena, LocalDate datumPovratkaOpreme, SkijaskaOprema idSkiOprema) {
         this.rb = rb;
         this.idIznajmljivanje = idIznajmljivanje;
         this.brojSati = brojSati;
@@ -111,10 +111,10 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
     public String toString() {
         return rb + " " + idIznajmljivanje.getIdIznajmljivanje() + " " + brojSati + " " + cena + " " + satCena + " " + datumPovratkaOpreme + " " + idSkiOprema.getIdSkiOprema();
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         return hash;
     }
 
@@ -130,9 +130,6 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
             return false;
         }
         final StavkaIznajmljivanja other = (StavkaIznajmljivanja) obj;
-        if (this.idIznajmljivanje != other.idIznajmljivanje) {
-            return false;
-        }
         if (this.rb != other.rb) {
             return false;
         }
@@ -145,11 +142,16 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
         if (Double.doubleToLongBits(this.satCena) != Double.doubleToLongBits(other.satCena)) {
             return false;
         }
+        if (!Objects.equals(this.idIznajmljivanje, other.idIznajmljivanje)) {
+            return false;
+        }
         if (!Objects.equals(this.datumPovratkaOpreme, other.datumPovratkaOpreme)) {
             return false;
         }
         return Objects.equals(this.idSkiOprema, other.idSkiOprema);
     }
+    
+    
 
     @Override
     public String vratiNazivTabele() {
@@ -168,12 +170,12 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "stavka_iznajmljivanja.rb=" + rb + "AND stavka_iznajmljivanja.idIznajmljivanje=" + idIznajmljivanje.getIdIznajmljivanje();
+        return "stavka_iznajmljivanja.rb=" + rb + " AND stavka_iznajmljivanja.idIznajmljivanje=" + idIznajmljivanje.getIdIznajmljivanje();
     }
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "brojSati=" + brojSati + ", cena=" + cena + ", satCena=" + satCena + "', datumPovratkaOpreme='" + datumPovratkaOpreme + "'";
+        return "brojSati=" + brojSati + ", cena=" + cena + ", satCena=" + satCena + ", datumPovratkaOpreme='" + datumPovratkaOpreme + "'" + ", idSkiOprema=" + idSkiOprema.getIdSkiOprema();
     }
 
     @Override
@@ -183,27 +185,29 @@ public class StavkaIznajmljivanja implements ApstraktniDomenskiObjekat{
         while(rs.next()){
             int Rb = rs.getInt("stavka_iznajmljivanja.rb");
             int IdIznajmljivanje = rs.getInt("stavka_iznajmljivanja.idIznajmljivanje");
-            LocalDate DatumIznajmljivanja = rs.getDate("iznajmljivanje.datumIznajmljivanja").toLocalDate();
-            int UkupnoSati = rs.getInt("iznajmljivanje.ukupnoSati");
-            double UkupanIznos = rs.getDouble("iznajmljivanje.ukupanIznos");
-            String NacinPlacanja = rs.getString("iznajmljivanje.nacinPlacanja");
-            int idzaposleni = rs.getInt("iznajmljivanje.idZaposleni");
-            String imeZap = rs.getString("zaposleni.ime");
-            String prezimeZap = rs.getString("zaposleni.prezime");
-            String emailZap = rs.getString("zaposleni.email");
-            String userZap = rs.getString("zaposleni.username");
-            String passZap = rs.getString("zaposleni.password");
-            int idosoba = rs.getInt("iznajmljivanje.idOsoba");
-            String imeOsobe = rs.getString("osoba.ime");
-            String prezimeOsobe = rs.getString("osoba.prezime");
-            String telefonOsobe = rs.getString("osoba.telefon");
-            String emailOsobe = rs.getString("osoba.email");
-            int mestoOsobe = rs.getInt("osoba.idMesto");
+//            LocalDate DatumIznajmljivanja = rs.getDate("iznajmljivanje.datumIznajmljivanja").toLocalDate();
+//            int UkupnoSati = rs.getInt("iznajmljivanje.ukupnoSati");
+//            double UkupanIznos = rs.getDouble("iznajmljivanje.ukupanIznos");
+//            String NacinPlacanja = rs.getString("iznajmljivanje.nacinPlacanja");
+//            int idzaposleni = rs.getInt("iznajmljivanje.idZaposleni");
+//            String imeZap = rs.getString("zaposleni.ime");
+//            String prezimeZap = rs.getString("zaposleni.prezime");
+//            String emailZap = rs.getString("zaposleni.email");
+//            String userZap = rs.getString("zaposleni.username");
+//            String passZap = rs.getString("zaposleni.password");
+//            int idosoba = rs.getInt("iznajmljivanje.idOsoba");
+//            String imeOsobe = rs.getString("osoba.ime");
+//            String prezimeOsobe = rs.getString("osoba.prezime");
+//            String telefonOsobe = rs.getString("osoba.telefon");
+//            String emailOsobe = rs.getString("osoba.email");
+//            int mestoOsobe = rs.getInt("osoba.idMesto");
             
-            Mesto m = new Mesto(mestoOsobe, null);
-            Osoba o = new Osoba(idosoba, imeOsobe, prezimeOsobe, telefonOsobe, emailOsobe, m);
-            Zaposleni z = new Zaposleni(idzaposleni, imeZap, prezimeZap, emailZap, userZap, passZap);
-            Iznajmljivanje i = new Iznajmljivanje(IdIznajmljivanje, DatumIznajmljivanja, UkupnoSati, UkupanIznos, NacinPlacanja, z, o);
+//            Mesto m = new Mesto(mestoOsobe, null);
+//            Osoba o = new Osoba(idosoba, imeOsobe, prezimeOsobe, telefonOsobe, emailOsobe, m);
+//            Zaposleni z = new Zaposleni(idzaposleni, imeZap, prezimeZap, emailZap, userZap, passZap);
+            Iznajmljivanje i = new Iznajmljivanje();
+            i.setIdIznajmljivanje(IdIznajmljivanje);
+            
             
             int BrojSati = rs.getInt("stavka_iznajmljivanja.brojSati");
             double Cena = rs.getDouble("stavka_iznajmljivanja.cena");

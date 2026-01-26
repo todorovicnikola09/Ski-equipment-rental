@@ -12,7 +12,6 @@ import java.io.Serializable;
  */
 public class Odgovor implements Serializable {
     private Object odgovor;
-    private Exception exc;
     
     public Odgovor() {
     }
